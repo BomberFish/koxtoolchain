@@ -132,11 +132,11 @@ Build_CT-NG-Legacy() {
 		echo ""
 
 		# Start by removing the old TC...
-		[[ -d "${HOME}/x-tools/_arm-${my_tc}-linux-gnueabi" ]] && chmod -R u+w ${HOME}/x-tools/_arm-${my_tc}-linux-gnueabi && rm -rf ${HOME}/x-tools/_arm-${my_tc}-linux-gnueabi
-		[[ -d "${HOME}/x-tools/_arm-${my_tc}-linux-gnueabihf" ]] && chmod -R u+w ${HOME}/x-tools/_arm-${my_tc}-linux-gnueabihf && rm -rf ${HOME}/x-tools/_arm-${my_tc}-linux-gnueabihf
+		[[ -d "${PWD}/x-tools/_arm-${my_tc}-linux-gnueabi" ]] && chmod -R u+w ${PWD}/x-tools/_arm-${my_tc}-linux-gnueabi && rm -rf ${PWD}/x-tools/_arm-${my_tc}-linux-gnueabi
+		[[ -d "${PWD}/x-tools/_arm-${my_tc}-linux-gnueabihf" ]] && chmod -R u+w ${PWD}/x-tools/_arm-${my_tc}-linux-gnueabihf && rm -rf ${PWD}/x-tools/_arm-${my_tc}-linux-gnueabihf
 		# Then backup the current one...
-		[[ -d "${HOME}/x-tools/arm-${my_tc}-linux-gnueabi" ]] && mv ${HOME}/x-tools/{,_}arm-${my_tc}-linux-gnueabi
-		[[ -d "${HOME}/x-tools/arm-${my_tc}-linux-gnueabihf" ]] && mv ${HOME}/x-tools/{,_}arm-${my_tc}-linux-gnueabihf
+		[[ -d "${PWD}/x-tools/arm-${my_tc}-linux-gnueabi" ]] && mv ${PWD}/x-tools/{,_}arm-${my_tc}-linux-gnueabi
+		[[ -d "${PWD}/x-tools/arm-${my_tc}-linux-gnueabihf" ]] && mv ${PWD}/x-tools/{,_}arm-${my_tc}-linux-gnueabihf
 
 		# Clean the WD
 		./ct-ng clean
@@ -192,7 +192,7 @@ Build_CT-NG() {
 	# NOTE: Joy? The issue appears to be fixed in Linaro GCC 5.3 2016.04 snapshot! :)
 
 	# XXX: I'm seriously considering adding proper support for binutil's native handling of the LTO plugin, via lib/bfd-plugins, instead of relying on the GCC wrappers...
-	#        cd ${HOME}/x-tools/arm-kobo-linux-gnueabihf
+	#        cd ${PWD}/x-tools/arm-kobo-linux-gnueabihf
 	#        mkdir -p lib/bfd-plugins
 	#        cd lib/bfd-plugins
 	#        ln -sf ../../libexec/gcc/arm-kobo-linux-gnueabihf/7.3.1/liblto_plugin.so.0.0.0 liblto_plugin.so
@@ -226,11 +226,11 @@ Build_CT-NG() {
 		echo ""
 
 		# Start by removing the old TC...
-		[[ -d "${HOME}/x-tools/_arm-${my_tc}-linux-gnueabi" ]] && chmod -R u+w ${HOME}/x-tools/_arm-${my_tc}-linux-gnueabi && rm -rf ${HOME}/x-tools/_arm-${my_tc}-linux-gnueabi
-		[[ -d "${HOME}/x-tools/_arm-${my_tc}-linux-gnueabihf" ]] && chmod -R u+w ${HOME}/x-tools/_arm-${my_tc}-linux-gnueabihf && rm -rf ${HOME}/x-tools/_arm-${my_tc}-linux-gnueabihf
+		[[ -d "${PWD}/x-tools/_arm-${my_tc}-linux-gnueabi" ]] && chmod -R u+w ${PWD}/x-tools/_arm-${my_tc}-linux-gnueabi && rm -rf ${PWD}/x-tools/_arm-${my_tc}-linux-gnueabi
+		[[ -d "${PWD}/x-tools/_arm-${my_tc}-linux-gnueabihf" ]] && chmod -R u+w ${PWD}/x-tools/_arm-${my_tc}-linux-gnueabihf && rm -rf ${PWD}/x-tools/_arm-${my_tc}-linux-gnueabihf
 		# Then backup the current one...
-		[[ -d "${HOME}/x-tools/arm-${my_tc}-linux-gnueabi" ]] && mv ${HOME}/x-tools/{,_}arm-${my_tc}-linux-gnueabi
-		[[ -d "${HOME}/x-tools/arm-${my_tc}-linux-gnueabihf" ]] && mv ${HOME}/x-tools/{,_}arm-${my_tc}-linux-gnueabihf
+		[[ -d "${PWD}/x-tools/arm-${my_tc}-linux-gnueabi" ]] && mv ${PWD}/x-tools/{,_}arm-${my_tc}-linux-gnueabi
+		[[ -d "${PWD}/x-tools/arm-${my_tc}-linux-gnueabihf" ]] && mv ${PWD}/x-tools/{,_}arm-${my_tc}-linux-gnueabihf
 
 		# Clean the WD
 		./ct-ng distclean
@@ -453,7 +453,7 @@ case ${KINDLE_TC} in
 		export TC_BUILD_DIR
 
 		export CROSS_PREFIX="${CROSS_TC}-"
-		export PATH="${HOME}/x-tools/${CROSS_TC}/bin:${PATH}"
+		export PATH="${PWD}/x-tools/${CROSS_TC}/bin:${PATH}"
 
 		## NOTE: See http://gcc.gnu.org/gcc-4.7/changes.html & http://comments.gmane.org/gmane.linux.linaro.devel/12115 & http://comments.gmane.org/gmane.linux.ports.arm.kernel/117863
 		## But, basically, if you want to build a Kernel, backport https://github.com/mirrors/linux/commit/8428e84d42179c2a00f5f6450866e70d802d1d05 [it's not in FW 2.5.8/3.4/4.1.0/5.1.2],
@@ -564,7 +564,7 @@ case ${KINDLE_TC} in
 		export TC_BUILD_DIR
 
 		export CROSS_PREFIX="${CROSS_TC}-"
-		export PATH="${HOME}/x-tools/${CROSS_TC}/bin:${PATH}"
+		export PATH="${PWD}/x-tools/${CROSS_TC}/bin:${PATH}"
 
 		## NOTE: The new libstdc++ ABI might cause some issues if not handled on GCC >= 5.1 (cf. https://gcc.gnu.org/onlinedocs/libstdc++/manual/using_dual_abi.html), so, disable it...
 		if is_ver_gte "$(${CROSS_TC}-gcc -dumpversion)" "5.1" ; then
@@ -631,7 +631,7 @@ case ${KINDLE_TC} in
 		export TC_BUILD_DIR
 
 		export CROSS_PREFIX="${CROSS_TC}-"
-		export PATH="${HOME}/x-tools/${CROSS_TC}/bin:${PATH}"
+		export PATH="${PWD}/x-tools/${CROSS_TC}/bin:${PATH}"
 
 		## NOTE: The new libstdc++ ABI might cause some issues if not handled on GCC >= 5.1 (cf. https://gcc.gnu.org/onlinedocs/libstdc++/manual/using_dual_abi.html), so, disable it...
 		if is_ver_gte "$(${CROSS_TC}-gcc -dumpversion)" "5.1" ; then
@@ -648,7 +648,7 @@ case ${KINDLE_TC} in
 		##	Why would we do that? Because since FW 5.6.5, that's actually the glibc version used, and, more importantly,
 		##	it was part of an experiment: with the apparently broken Linaro 5.3 snapshots from 2016.01 to 2016.3, a TC built against glibc 2.19 would work, instead of silently generating broken code...
 		## NOTE: The root issue was fixed in Linaro 5.3 2016.04, which makes that whole experiment an archeological relic ;).
-		if [[ -f "${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/lib/libc-2.19.so" ]] ; then
+		if [[ -f "${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/lib/libc-2.19.so" ]] ; then
 			echo "!!"
 			echo "!! ENABLING GLIBC 2.19 -> GLIBC 2.12 COMPAT FLAGS! !!"
 			echo "!!"
@@ -762,7 +762,7 @@ case ${KINDLE_TC} in
 		if [[ -n "${_XTC_DIR}" ]] ; then
 			export PATH="${_XTC_DIR}/${CROSS_TC}/bin:${PATH}"
 		else
-			export PATH="${HOME}/x-tools/${CROSS_TC}/bin:${PATH}"
+			export PATH="${PWD}/x-tools/${CROSS_TC}/bin:${PATH}"
 		fi
 
 		## NOTE: The new libstdc++ ABI might cause some issues if not handled on GCC >= 5.1 (cf. https://gcc.gnu.org/onlinedocs/libstdc++/manual/using_dual_abi.html), so, disable it...
@@ -829,7 +829,7 @@ case ${KINDLE_TC} in
 			if [[ -n "${_XTC_DIR}" ]] ; then
 				BASE_SYSROOT="${_XTC_DIR}/${CROSS_TC}/${CROSS_TC}/sysroot"
 			else
-				BASE_SYSROOT="${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot"
+				BASE_SYSROOT="${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot"
 			fi
 			BASE_SYSROOT_PKG_CONFIG_LIBDIR="${BASE_SYSROOT}/usr/lib/pkgconfig"
 			BASE_PKG_CONFIG_LIBDIR="${BASE_SYSROOT_PKG_CONFIG_LIBDIR}:${TC_BUILD_DIR}/lib/pkgconfig"
@@ -870,7 +870,7 @@ case ${KINDLE_TC} in
 		export TC_BUILD_DIR
 
 		export CROSS_PREFIX="${CROSS_TC}-"
-		export PATH="${HOME}/x-tools/${CROSS_TC}/bin:${PATH}"
+		export PATH="${PWD}/x-tools/${CROSS_TC}/bin:${PATH}"
 
 		## NOTE: Upstream is (currently) using GCC 7.3, so we have no potential C++ ABI issue to take care of :)
 
@@ -935,7 +935,7 @@ case ${KINDLE_TC} in
 		export TC_BUILD_DIR
 
 		export CROSS_PREFIX="${CROSS_TC}-"
-		export PATH="${HOME}/x-tools/${CROSS_TC}/bin:${PATH}"
+		export PATH="${PWD}/x-tools/${CROSS_TC}/bin:${PATH}"
 
 		## NOTE: The new libstdc++ ABI might cause some issues if not handled on GCC >= 5.1 (c.f., https://gcc.gnu.org/onlinedocs/libstdc++/manual/using_dual_abi.html), so, disable it...
 		## NOTE: This is a bit annoying on PB, because older FW were based on GCC 4.8.1 (so, old ABI), but newer FW (5.19+) are based on GCC 6.3.0 + Clang 7 (so, new ABI, not libc++) :/.
@@ -1003,7 +1003,7 @@ case ${KINDLE_TC} in
 		export TC_BUILD_DIR
 
 		export CROSS_PREFIX="${CROSS_TC}-"
-		export PATH="${HOME}/x-tools/${CROSS_TC}/bin:${PATH}"
+		export PATH="${PWD}/x-tools/${CROSS_TC}/bin:${PATH}"
 
 		## NOTE: The new libstdc++ ABI might cause some issues if not handled on GCC >= 5.1 (cf. https://gcc.gnu.org/onlinedocs/libstdc++/manual/using_dual_abi.html), so, disable it...
 		if is_ver_gte "$(${CROSS_TC}-gcc -dumpversion)" "5.1" ; then
@@ -1153,8 +1153,8 @@ if [[ "${2}" == "env" ]] ; then
 		#       An annoying caveat is that llvm-libunwind/libcxxabi/libcxx live in standard library search paths, not custom LLVM ones, unlike compiler-rt... :/ (i.e., we'd probably have to move 'em to the TC's sysroot or a staging one).
 		# NOTE: c.f., https://archive.fosdem.org/2018/schedule/event/crosscompile/attachments/slides/2107/export/events/attachments/crosscompile/slides/2107/How_to_cross_compile_with_LLVM_based_tools.pdf for a good recap.
 		if [[ "${3}" == "clang-gcc" ]] ; then
-			export CFLAGS="--target=${CROSS_TC} --sysroot=$(${CROSS_TC}-gcc -print-sysroot) --gcc-toolchain=${HOME}/x-tools/${CROSS_TC} ${RICE_CFLAGS}"
-			export CXXFLAGS="--target=${CROSS_TC} --sysroot=$(${CROSS_TC}-gcc -print-sysroot) --gcc-toolchain=${HOME}/x-tools/${CROSS_TC} ${RICE_CFLAGS}"
+			export CFLAGS="--target=${CROSS_TC} --sysroot=$(${CROSS_TC}-gcc -print-sysroot) --gcc-toolchain=${PWD}/x-tools/${CROSS_TC} ${RICE_CFLAGS}"
+			export CXXFLAGS="--target=${CROSS_TC} --sysroot=$(${CROSS_TC}-gcc -print-sysroot) --gcc-toolchain=${PWD}/x-tools/${CROSS_TC} ${RICE_CFLAGS}"
 			export LDFLAGS="-fuse-ld=lld ${BASE_LDFLAGS}"
 		else
 			export CFLAGS="--target=${CROSS_TC} --sysroot=$(${CROSS_TC}-gcc -print-sysroot) ${RICE_CFLAGS}"
@@ -1182,7 +1182,7 @@ meson_setup() {
 	sed -e "s#%AR%#$(command -v ${CROSS_TC}-gcc-ar)#g" -i MesonCross.txt
 	sed -e "s#%STRIP%#$(command -v ${CROSS_TC}-strip)#g" -i MesonCross.txt
 	sed -e "s#%PKGCONFIG%#${TC_BUILD_DIR}/bin/pkg-config#g" -i MesonCross.txt
-	sed -e "s#%SYSROOT%#${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot#g" -i MesonCross.txt
+	sed -e "s#%SYSROOT%#${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot#g" -i MesonCross.txt
 	sed -e "s#%MARCH%#$(echo ${CFLAGS} | tr ' ' '\n' | grep mtune | cut -d'=' -f 2)#g" -i MesonCross.txt
 	sed -e "s#%PREFIX%#${TC_BUILD_DIR}#g" -i MesonCross.txt
 
@@ -1892,9 +1892,9 @@ if [[ "${KINDLE_TC}" == "KOBO" ]] && [[ "${USE_TIRPC}" == "true" ]] ; then
 	# At least I'm not alone to have noticed... but nobody seems to care. (cf. http://sourceforge.net/p/libtirpc/bugs/25/, which is roughly 4 years old).
 	# Work that shit around by siphoning the headers from our K5 TC, which is the closest match...
 	mkdir -p include/rpcsvc
-	cp -v ${HOME}/x-tools/arm-kindle5-linux-gnueabi/arm-kindle5-linux-gnueabi/sysroot/usr/include/rpcsvc/nis.h include/rpcsvc/
-	cp -v ${HOME}/x-tools/arm-kindle5-linux-gnueabi/arm-kindle5-linux-gnueabi/sysroot/usr/include/rpcsvc/nis_tags.h include/rpcsvc/
-	cp -v ${HOME}/x-tools/arm-kindle5-linux-gnueabi/arm-kindle5-linux-gnueabi/sysroot/usr/include/rpcsvc/nislib.h include/rpcsvc/
+	cp -v ${PWD}/x-tools/arm-kindle5-linux-gnueabi/arm-kindle5-linux-gnueabi/sysroot/usr/include/rpcsvc/nis.h include/rpcsvc/
+	cp -v ${PWD}/x-tools/arm-kindle5-linux-gnueabi/arm-kindle5-linux-gnueabi/sysroot/usr/include/rpcsvc/nis_tags.h include/rpcsvc/
+	cp -v ${PWD}/x-tools/arm-kindle5-linux-gnueabi/arm-kindle5-linux-gnueabi/sysroot/usr/include/rpcsvc/nislib.h include/rpcsvc/
 
 	echo "* Building TI-RPC . . ."
 	# XXX: For added fun, linking this w/ LTO fucks it up silently (broken pmap_* symbols)... (Linaro GCC 4.9 2015.04-1 & Linaro binutils 2.25.0-2015.01-2)
@@ -3664,7 +3664,7 @@ update_title_info
 patch -p1 < ${SVN_ROOT}/Configs/trunk/Kindle/Misc/cffi-py2-x-compile.patch
 # NOTE: This is hackish. If the host's Python doesn't exactly match, here be dragons.
 # We're using https://pypi.python.org/pypi/distutilscross to soften some of the sillyness, but it's still a pile of dominoes waiting to fall...
-#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
+#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
 for py_ver in ${PYTHON_VERSIONS} ; do
 	if [[ "${py_ver}" == 3.* ]] ; then
 		py_home="python3"
@@ -3672,10 +3672,10 @@ for py_ver in ${PYTHON_VERSIONS} ; do
 		py_home="python"
 	fi
 
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
 	# NOTE: No -I/usr/include intrusion here...
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
 done
 cd ..
 ## SimpleJSON
@@ -3686,7 +3686,7 @@ until git clone --depth 1 https://github.com/simplejson/simplejson.git ; do
 done
 cd simplejson
 update_title_info
-#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
+#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
 for py_ver in ${PYTHON_VERSIONS} ; do
 	if [[ "${py_ver}" == 3.* ]] ; then
 		py_home="python3"
@@ -3694,10 +3694,10 @@ for py_ver in ${PYTHON_VERSIONS} ; do
 		py_home="python"
 	fi
 
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
 	# NOTE: No -I/usr/include intrusion here...
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
 done
 cd ..
 ## six
@@ -3789,7 +3789,7 @@ wget https://pypi.python.org/packages/source/c/cryptography/cryptography-${CRYPT
 tar -I pigz -xvf cryptography-${CRYPTOGRAPHY_VER}.tar.gz
 cd cryptography-${CRYPTOGRAPHY_VER}
 update_title_info
-#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
+#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
 # NOTE: We need to link against pthreads, and distutils is terrible.
 for py_ver in ${PYTHON_VERSIONS} ; do
 	if [[ "${py_ver}" == 3.* ]] ; then
@@ -3800,11 +3800,11 @@ for py_ver in ${PYTHON_VERSIONS} ; do
 		py_home="python"
 	fi
 
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
 	# NOTE: No -I/usr/include intrusion here...
 	#env _PYTHON_SYSCONFIGDATA_NAME="${PY3_SYSCONFIG}" PYTHONHOME="${TC_BUILD_DIR}/${py_home}" PYTHONPATH="/usr/lib/python${py_ver}/lib-dynload:/usr/lib/python${py_ver}/site-packages" python${py_ver} setup.py build
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
 done
 cd ..
 ## cryptography for Python 3
@@ -3821,7 +3821,7 @@ export CRYPTOGRAPHY_DONT_BUILD_RUST=1
 sed -e 's:from setuptools_rust import RustExtension:pass:' -e '/setup_requires/d' -i setup.py
 # Gentoo patchset
 patch -p1 < /usr/portage/dev-python/cryptography/files/cryptography-3.4.7-py310.patch
-#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
+#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
 # NOTE: We need to link against pthreads, and distutils is terrible.
 for py_ver in ${PYTHON_VERSIONS} ; do
 	if [[ "${py_ver}" == 3.* ]] ; then
@@ -3832,11 +3832,11 @@ for py_ver in ${PYTHON_VERSIONS} ; do
 		continue
 	fi
 
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
 	# NOTE: No -I/usr/include intrusion here...
 	#env _PYTHON_SYSCONFIGDATA_NAME="${PY3_SYSCONFIG}" PYTHONHOME="${TC_BUILD_DIR}/${py_home}" PYTHONPATH="/usr/lib/python${py_ver}/lib-dynload:/usr/lib/python${py_ver}/site-packages" python${py_ver} setup.py build
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared -pthread" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
 done
 unset CRYPTOGRAPHY_DONT_BUILD_RUST
 cd ..
@@ -4013,7 +4013,7 @@ until git clone --depth 1 https://github.com/NiLuJe/py-fbink.git ; do
 done
 cd py-fbink
 update_title_info
-#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
+#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
 for py_ver in ${PYTHON_VERSIONS} ; do
 	if [[ "${py_ver}" == 3.* ]] ; then
 		py_home="python3"
@@ -4021,10 +4021,10 @@ for py_ver in ${PYTHON_VERSIONS} ; do
 		py_home="python"
 	fi
 
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
 	# NOTE: No -I/usr/include intrusion here...
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
 done
 cd ..
 ## Pillow for Python 2
@@ -4037,7 +4037,7 @@ cd Pillow
 update_title_info
 # Nerf the setup to avoid pulling in native paths...
 patch -p1 < ${SVN_ROOT}/Configs/trunk/Kindle/Misc/Pillow-py2-fix-setup-paths.patch
-#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
+#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
 for py_ver in ${PYTHON_VERSIONS} ; do
 	if [[ "${py_ver}" == 3.* ]] ; then
 		py_home="python3"
@@ -4047,9 +4047,9 @@ for py_ver in ${PYTHON_VERSIONS} ; do
 		py_home="python"
 	fi
 
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
 done
 cd ..
 ## Pillow for Python 3
@@ -4062,7 +4062,7 @@ cd Pillow
 update_title_info
 # Nerf the setup to avoid pulling in native paths...
 patch -p1 < ${SVN_ROOT}/Configs/trunk/Kindle/Misc/Pillow-fix-setup-paths.patch
-#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
+#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
 for py_ver in ${PYTHON_VERSIONS} ; do
 	if [[ "${py_ver}" == 3.* ]] ; then
 		py_home="python3"
@@ -4072,12 +4072,12 @@ for py_ver in ${PYTHON_VERSIONS} ; do
 		continue
 	fi
 
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
 	# NOTE: disutilscross uses the host's sysconfigdata. This means a -I/usr/include is added, which, besides being a terrible idea when cross-compiling, breaks compilation here... Use the Py3-ish way from https://bugs.python.org/msg282141 instead...
 	#       The PYTHONPATH trickery is necessary to pick up our *host*'s C modules (much like https://github.com/yan12125/python3-android/blob/master/devscripts/import_all.py, I think?)...
 	env _PYTHON_SYSCONFIGDATA_NAME="${PY3_SYSCONFIG}" PYTHONHOME="${TC_BUILD_DIR}/${py_home}" PYTHONPATH="/usr/lib/python${py_ver}/lib-dynload" python${py_ver} setup.py build
-	#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
+	#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py build -x
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
 done
 cd ..
 ## wand
@@ -4091,7 +4091,7 @@ update_title_info
 # Make sure we'll be able to load our own IM libs (we basically enforce a hardcoded MAGICK_HOME, as ctypes.util.find_library has no hopes of ever finding anything on our target platforms...; plus a few tweaks to pickup the right IM variant/sover)
 patch -p1 < ${SVN_ROOT}/Configs/trunk/Kindle/Misc/wand-fix-library-loading.patch
 sed -e "s#/mnt/us#${DEVICE_USERSTORE}#g" -i wand/api.py
-#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
+#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
 for py_ver in ${PYTHON_VERSIONS} ; do
 	if [[ "${py_ver}" == 3.* ]] ; then
 		py_home="python3"
@@ -4196,7 +4196,7 @@ until git clone --depth 1 https://github.com/lxml/lxml.git ; do
 done
 cd lxml
 update_title_info
-#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
+#env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" CFLAGS="${BASE_CFLAGS} -I${TC_BUILD_DIR}/python/include/python2.7" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/python/lib -L${TC_BUILD_DIR}/python/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/python/lib" python2.7 setup.py install --root=${TC_BUILD_DIR}/python --prefix=. --no-compile
 for py_ver in ${PYTHON_VERSIONS} ; do
 	if [[ "${py_ver}" == 3.* ]] ; then
 		py_home="python3"
@@ -4204,14 +4204,14 @@ for py_ver in ${PYTHON_VERSIONS} ; do
 		py_home="python"
 	fi
 
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" python${py_ver} setup.py clean --all
 	# NOTE: No -I/usr/include intrusion here, but there is a (harmless) -L/usr/lib64 one, so, eh...
 	if [[ "${py_home}" == "python3" ]] ; then
 		env _PYTHON_SYSCONFIGDATA_NAME="${PY3_SYSCONFIG}" PYTHONHOME="${TC_BUILD_DIR}/${py_home}" PYTHONPATH="/usr/lib/python${py_ver}/lib-dynload:/usr/lib/python${py_ver}/site-packages" python${py_ver} setup.py build
 	else
-		env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" WITH_XML2_CONFIG="${TC_BUILD_DIR}/bin/xml2-config" WITH_XSLT_CONFIG="${TC_BUILD_DIR}/bin/xslt-config" python${py_ver} setup.py build -x
+		env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" WITH_XML2_CONFIG="${TC_BUILD_DIR}/bin/xml2-config" WITH_XSLT_CONFIG="${TC_BUILD_DIR}/bin/xslt-config" python${py_ver} setup.py build -x
 	fi
-	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" WITH_XML2_CONFIG="${TC_BUILD_DIR}/bin/xml2-config" WITH_XSLT_CONFIG="${TC_BUILD_DIR}/bin/xslt-config" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
+	env CC="${CROSS_TC}-gcc" LDSHARED="${CROSS_TC}-gcc -shared" PYTHONXCPREFIX="${TC_BUILD_DIR}/${py_home}" LDFLAGS="${BASE_LDFLAGS} -L${TC_BUILD_DIR}/${py_home}/lib -L${TC_BUILD_DIR}/${py_home}/usr/lib -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/${py_home}/lib" WITH_XML2_CONFIG="${TC_BUILD_DIR}/bin/xml2-config" WITH_XSLT_CONFIG="${TC_BUILD_DIR}/bin/xslt-config" python${py_ver} setup.py install --root=${TC_BUILD_DIR}/${py_home} --prefix=. --install-lib=lib/python${py_ver}/site-packages --no-compile --skip-build
 done
 cd ..
 ## BeautifulSoup
@@ -5375,7 +5375,7 @@ export CPPFLAGS="${BASE_CPPFLAGS} -I${TC_BUILD_DIR}/include/ncursesw"
 # Setup our rpath, plus another one for modules...
 # NOTE: Also explicitly look in the TC's sysroot, because pcre-config --libs is trying to be smart by automagically adding -L/usr/lib64 on x86_64 with no recourse against it...
 # See my note on binary python extension earlier for why it is such a terrible idea and how thoroughly it fucks us over.
-export LDFLAGS="${BASE_LDFLAGS} -L${HOME}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/usbnet/lib -Wl,-rpath=${DEVICE_USERSTORE}/usbnet/lib/zsh"
+export LDFLAGS="${BASE_LDFLAGS} -L${PWD}/x-tools/${CROSS_TC}/${CROSS_TC}/sysroot/usr/lib -Wl,-rpath=${DEVICE_USERSTORE}/usbnet/lib -Wl,-rpath=${DEVICE_USERSTORE}/usbnet/lib/zsh"
 # Oh, the joys of cross-compiling... (short-circuit runtime tests, we really can have dynamic modules)
 export zsh_cv_shared_environ=yes
 export zsh_cv_shared_tgetent=yes
