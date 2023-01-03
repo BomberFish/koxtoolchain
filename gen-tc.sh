@@ -109,25 +109,25 @@ case $1 in
 	kobo)
 		Build_CT-NG \
 			https://github.com/BomberFish/crosstool-ng.git \
-			cee21f107de87238cdac91e63ac7a07effa9e323 \
+			a437c898b8c1625cad390778726ccbb1630711fc \
 			"arm-${1}-linux-gnueabihf"
 		;;
 	nickel)
 		Build_CT-NG \
 			https://github.com/BomberFish/crosstool-ng.git \
-			cee21f107de87238cdac91e63ac7a07effa9e323 \
+			a437c898b8c1625cad390778726ccbb1630711fc \
 			"arm-${1}-linux-gnueabihf"
 		;;
 	kindlepw2)
 		Build_CT-NG \
 			https://github.com/BomberFish/crosstool-ng.git \
-			cee21f107de87238cdac91e63ac7a07effa9e323 \
+			a437c898b8c1625cad390778726ccbb1630711fc \
 			"arm-${1}-linux-gnueabi"
 		;;
 	kindle5)
 		Build_CT-NG \
 			https://github.com/BomberFish/crosstool-ng.git \
-			cee21f107de87238cdac91e63ac7a07effa9e323 \
+			a437c898b8c1625cad390778726ccbb1630711fc \
 			"arm-${1}-linux-gnueabi"
 		;;
 	kindle)
@@ -135,19 +135,19 @@ case $1 in
 		#       this TC currently fails to build on 1.24-kindle...
 		Build_CT-NG \
 			https://github.com/BomberFish/crosstool-ng.git \
-			cee21f107de87238cdac91e63ac7a07effa9e323 \
+			a437c898b8c1625cad390778726ccbb1630711fc \
 			"arm-${1}-linux-gnueabi"
 		;;
 	remarkable)
 		Build_CT-NG \
 			https://github.com/BomberFish/crosstool-ng.git \
-			cee21f107de87238cdac91e63ac7a07effa9e323 \
+			a437c898b8c1625cad390778726ccbb1630711fc \
 			"arm-${1}-linux-gnueabihf"
 		;;
 	cervantes)
 		Build_CT-NG \
 			https://github.com/BomberFish/crosstool-ng.git \
-			cee21f107de87238cdac91e63ac7a07effa9e323 \
+			a437c898b8c1625cad390778726ccbb1630711fc \
 			"arm-${1}-linux-gnueabi"
 		;;
 	pocketbook)
@@ -198,7 +198,7 @@ case $1 in
 	bookeen)
 		Build_CT-NG \
 			https://github.com/BomberFish/crosstool-ng.git \
-			cee21f107de87238cdac91e63ac7a07effa9e323 \
+			a437c898b8c1625cad390778726ccbb1630711fc \
 			"arm-${1}-linux-gnueabi"
 		;;
 	*)
