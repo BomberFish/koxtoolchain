@@ -108,53 +108,53 @@ case $1 in
 		;;
 	kobo)
 		Build_CT-NG \
-			https://github.com/NiLuJe/crosstool-ng.git \
-			3e2d99d030cbecc0119aa08bd06d062f59669d45 \
+			https://github.com/BomberFish/crosstool-ng.git \
+			cee21f107de87238cdac91e63ac7a07effa9e323 \
 			"arm-${1}-linux-gnueabihf"
 		;;
 	nickel)
 		Build_CT-NG \
-			https://github.com/NiLuJe/crosstool-ng.git \
-			3e2d99d030cbecc0119aa08bd06d062f59669d45 \
+			https://github.com/BomberFish/crosstool-ng.git \
+			cee21f107de87238cdac91e63ac7a07effa9e323 \
 			"arm-${1}-linux-gnueabihf"
 		;;
 	kindlepw2)
 		Build_CT-NG \
-			https://github.com/NiLuJe/crosstool-ng.git \
-			3e2d99d030cbecc0119aa08bd06d062f59669d45 \
+			https://github.com/BomberFish/crosstool-ng.git \
+			cee21f107de87238cdac91e63ac7a07effa9e323 \
 			"arm-${1}-linux-gnueabi"
 		;;
 	kindle5)
 		Build_CT-NG \
-			https://github.com/NiLuJe/crosstool-ng.git \
-			3e2d99d030cbecc0119aa08bd06d062f59669d45 \
+			https://github.com/BomberFish/crosstool-ng.git \
+			cee21f107de87238cdac91e63ac7a07effa9e323 \
 			"arm-${1}-linux-gnueabi"
 		;;
 	kindle)
 		# NOTE: Don't swap away from the 1.23-kindle branch,
 		#       this TC currently fails to build on 1.24-kindle...
 		Build_CT-NG \
-			https://github.com/NiLuJe/crosstool-ng.git \
-			9954e26ad2a0781a12f0066411bc5ee5cd8b2829 \
+			https://github.com/BomberFish/crosstool-ng.git \
+			cee21f107de87238cdac91e63ac7a07effa9e323 \
 			"arm-${1}-linux-gnueabi"
 		;;
 	remarkable)
 		Build_CT-NG \
-			https://github.com/NiLuJe/crosstool-ng.git \
-			3e2d99d030cbecc0119aa08bd06d062f59669d45 \
+			https://github.com/BomberFish/crosstool-ng.git \
+			cee21f107de87238cdac91e63ac7a07effa9e323 \
 			"arm-${1}-linux-gnueabihf"
 		;;
 	cervantes)
 		Build_CT-NG \
-			https://github.com/NiLuJe/crosstool-ng.git \
-			3e2d99d030cbecc0119aa08bd06d062f59669d45 \
+			https://github.com/BomberFish/crosstool-ng.git \
+			cee21f107de87238cdac91e63ac7a07effa9e323 \
 			"arm-${1}-linux-gnueabi"
 		;;
 	pocketbook)
 		# NOTE: Don't swap away from the 1.23-kindle branch,
 		#       this TC currently fails to build on 1.24-kindle...
 		Build_CT-NG \
-			https://github.com/NiLuJe/crosstool-ng.git \
+			https://github.com/BomberFish/crosstool-ng.git \
 			9954e26ad2a0781a12f0066411bc5ee5cd8b2829 \
 			"arm-${1}-linux-gnueabi"
 		# Then, pull InkView from the (old) official SDK...
@@ -197,8 +197,8 @@ case $1 in
 		;;
 	bookeen)
 		Build_CT-NG \
-			https://github.com/NiLuJe/crosstool-ng.git \
-			3e2d99d030cbecc0119aa08bd06d062f59669d45 \
+			https://github.com/BomberFish/crosstool-ng.git \
+			cee21f107de87238cdac91e63ac7a07effa9e323 \
 			"arm-${1}-linux-gnueabi"
 		;;
 	*)

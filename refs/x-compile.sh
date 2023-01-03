@@ -115,7 +115,7 @@ Build_CT-NG-Legacy() {
 	mkdir -p CT-NG
 	cd CT-NG
 	# Pull our own CT-NG branch, which includes a few tweaks needed to support truly old glibc & kernel versions...
-	git clone -b 1.23-kindle --single-branch https://github.com/NiLuJe/crosstool-ng.git .
+	git clone -b 1.23-kindle --single-branch https://github.com/BomberFish/crosstool-ng.git .
 
 	git clean -fxdq
 	./bootstrap
@@ -168,7 +168,7 @@ Build_CT-NG() {
 	mkdir -p CT-NG
 	cd CT-NG
 	# Pull our own CT-NG branch, which includes a few tweaks needed to support truly old glibc & kernel versions...
-	git clone -b 1.24-kindle --single-branch https://github.com/NiLuJe/crosstool-ng.git .
+	git clone -b 1.24-kindle --single-branch https://github.com/BomberFish/crosstool-ng.git .
 	# This also often includes the latest Linaro GCC versions...
 	# But, more generally,
 	# This includes the Make-3.82 patch to Glibc 2.9 too, because it fails to build in softfp with make 3.81... -_-" [Cf. http://lists.gnu.org/archive/html/help-make/2012-02/msg00025.html]
